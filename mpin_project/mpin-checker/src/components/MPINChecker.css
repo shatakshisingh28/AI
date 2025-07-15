@@ -1,0 +1,92 @@
+/* MPINChecker.css */
+.mpin-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(to right, #1cb5e0, #000851);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.mpin-card {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.mpin-card h2 {
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #007bff;
+}
+
+.mpin-input {
+  margin-bottom: 20px;
+}
+
+.mpin-input label {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.mpin-input input {
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 50px;
+  border: 1px solid #ddd;
+  background: #f8f9fa;
+  font-size: 16px;
+  transition: border 0.3s ease;
+}
+
+.mpin-input input:focus {
+  border: 1px solid #007bff;
+  outline: none;
+  background: #fff;
+}
+
+.mpin-button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 50px;
+  background-color: #007bff;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.mpin-button:hover {
+  background-color: #0056b3;
+}
+
+.mpin-result {
+  margin-top: 25px;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+.mpin-result.strong {
+  background-color: #d4edda;
+  border-left: 5px solid #28a745;
+}
+
+.mpin-result.weak {
+  background-color: #f8d7da;
+  border-left: 5px solid #dc3545;
+}
+
+.mpin-reason {
+  margin-top: 10px;
+  text-align: left;
+}
