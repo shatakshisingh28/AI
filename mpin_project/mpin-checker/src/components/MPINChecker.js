@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { analyzeMPIN } from '../utils/mpinUtils';
 import './MPINChecker.css';
 
@@ -11,6 +11,12 @@ const MPINChecker = () => {
   });
   const [result, setResult] = useState(null);
   const [error, setError] = useState('');
+  const [theme, setTheme] = useState('light');
+  const [showMpin, setShowMpin] = useState(false);
+
+  useEffect(() => {
+    document.body.className = theme === 'dark' ? 'dark-mode' : '';
+  }, [theme]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,21 +35,68 @@ const MPINChecker = () => {
     setResult(analysis);
   };
 
+  const generateStrongMPIN = () => {
+    const generate = () => {
+      let pin = '';
+      while (pin.length < 6) {
+        const digit = Math.floor(Math.random() * 10);
+        pin += digit;
+      }
+      const reasons = analyzeMPIN(pin, userData).reasons;
+      return reasons.length === 0 ? pin : generate();
+    };
+
+    const strongPin = generate();
+    setMpin(strongPin);
+    setResult(null);
+    setError('');
+  };
+
   return (
     <div className="mpin-wrapper">
       <div className="mpin-card">
+        <div className="theme-toggle">
+          <label className="switch">
+            <input
+              type="checkbox"
+              checked={theme === 'dark'}
+              onChange={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            />
+            <span className="slider round"></span>
+          </label>
+          <span style={{ marginLeft: '10px', fontWeight: '500' }}>
+            {theme === 'dark' ? 'Dark' : 'Light'} Mode
+          </span>
+        </div>
+
         <h2>🔐 MPIN Strength Checker</h2>
 
         <form onSubmit={handleSubmit}>
           <div className="mpin-input">
             <label>MPIN (4 or 6 digits)</label>
-            <input
-              type="password"
-              value={mpin}
-              maxLength={6}
-              onChange={(e) => setMpin(e.target.value)}
-              required
-            />
+            <div className="mpin-input-wrapper">
+              <input
+                type={showMpin ? 'text' : 'password'}
+                value={mpin}
+                maxLength={6}
+                onChange={(e) => setMpin(e.target.value)}
+                required
+              />
+              <span
+                className="eye-toggle"
+                onClick={() => setShowMpin(!showMpin)}
+                title={showMpin ? 'Hide MPIN' : 'Show MPIN'}
+              >
+                {showMpin ? '🙈' : '👁️'}
+              </span>
+            </div>
+            <button
+              type="button"
+              className="mpin-suggest"
+              onClick={generateStrongMPIN}
+            >
+              🔄 Suggest a Strong MPIN
+            </button>
           </div>
 
           <div className="mpin-input">
