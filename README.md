@@ -32,14 +32,16 @@ Follow these simple steps to get the project up and running on your local machin
 ```bash
 git clone https://github.com/shatakshisingh28/AI.git
 cd AI
-
+```
 2. 🛠️ Install Dependencies
 Make sure you have Node.js and npm installed.
-
+```
 npm install
-
+```
 3. 🚴 Run the App
+```
 npm start
+```
 The app will be live at http://localhost:3000
 
 🧠 What This App Does
